@@ -193,13 +193,23 @@ end)
 -- Slash command
 SLASH_TS1 = "/ts"
 SlashCmdList["TS"] = function(c)
-  local a, b = c:match("^(%S*)%s*(.-)$")
-  if a == "timeout" then
-    local t = tonumber(b)
-    if t then TurtleSaluteDB.rollTimeout = t; print("TS timeout set to", t) else print("usage: /ts timeout <sec>") end
-  else
-    print("/ts timeout <sec> (current " .. TurtleSaluteDB.rollTimeout .. ")")
-  end
+    if not c or c == "" then
+        print("/ts timeout <sec> (current " .. TurtleSaluteDB.rollTimeout .. ")")
+        return
+    end
+
+    local a, b = c:match("^(%S*)%s*(.-)$")
+    if a == "timeout" then
+        local t = tonumber(b)
+        if t then
+            TurtleSaluteDB.rollTimeout = t
+            print("TS timeout set to " .. t)
+        else
+            print("usage: /ts timeout <sec>")
+        end
+    else
+        print("/ts timeout <sec> (current " .. TurtleSaluteDB.rollTimeout .. ")")
+    end
 end
 
 -- Slash command to toggle debugging
@@ -207,5 +217,5 @@ SLASH_TSDEBUG1 = "/tsdebug"
 SlashCmdList["TSDEBUG"] = function()
     TurtleSaluteDB.debug = not TurtleSaluteDB.debug
     local status = TurtleSaluteDB.debug and "enabled" or "disabled"
-    print("TurtleSalute debugging is now", status)
+    print("TurtleSalute debugging is now " .. status)
 end
