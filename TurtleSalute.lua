@@ -52,6 +52,7 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
     if TurtleSaluteDB.debug then
         local args = { arg1, arg2, arg3, arg4, arg5 }
         local message = table.concat(args, " ")
+        message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
         if message ~= "" then
             print("[TurtleSalute Debug]", message)
         end
@@ -60,7 +61,7 @@ end
 
 -- Updated sendComm function with debugging
 local function sendComm(p)
-    debugPrint("Sending message:", p)
+    debugPrint("Sending addon message:", PREFIX, p)
     if HAVE_MSG then
         SendAddonMessage(PREFIX, p, "GUILD")
     else
@@ -107,7 +108,7 @@ end
 
 -- Updated receiveRoll function with debugging
 local function receiveRoll(sender, tag, val)
-    debugPrint("Received roll from:", sender, "Tag:", tag, "Value:", val)
+    debugPrint("Received addon message:", "Sender:", sender, "Tag:", tag, "Value:", val)
     pending[sender] = { roll = tonumber(val), tag = tag }
     if not rollOpen then
         rollOpen = true
