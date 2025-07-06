@@ -51,7 +51,10 @@ end
 local function debugPrint(arg1, arg2, arg3, arg4, arg5)
     if TurtleSaluteDB.debug then
         local args = { arg1, arg2, arg3, arg4, arg5 }
-        print("[TurtleSalute Debug]", table.concat(args, " "))
+        local message = table.concat(args, " ")
+        if message ~= "" then
+            print("[TurtleSalute Debug]", message)
+        end
     end
 end
 
