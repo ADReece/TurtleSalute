@@ -52,7 +52,7 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
     if TurtleSaluteDB.debug then
         local args = {}
         for _, arg in ipairs({ arg1, arg2, arg3, arg4, arg5 }) do
-            if arg ~= nil then
+            if arg ~= nil and type(arg) ~= "table" then
                 table.insert(args, tostring(arg))
             end
         end
