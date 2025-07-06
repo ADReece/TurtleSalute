@@ -62,6 +62,8 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
             if message ~= "" then
                 print("[TurtleSalute Debug]", message)
             end
+        else
+            print("[TurtleSalute Debug] Error: Invalid message format")
         end
     end
 end
