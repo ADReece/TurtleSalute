@@ -48,9 +48,10 @@ if not HAVE_MSG then
 end
 
 -- Debugging output for communication
-local function debugPrint(...)
+local function debugPrint(arg1, arg2, arg3, arg4, arg5)
     if TurtleSaluteDB.debug then
-        print("[TurtleSalute Debug]", table.concat({...}, " "))
+        local args = { arg1, arg2, arg3, arg4, arg5 }
+        print("[TurtleSalute Debug]", table.concat(args, " "))
     end
 end
 
