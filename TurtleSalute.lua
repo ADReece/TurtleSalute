@@ -210,7 +210,7 @@ local function displayGitVersion()
         gitVersion = file:read("*line")
         file:close()
     end
-    print("[TurtleSalute] Loaded Git version:", gitVersion)
+    print("[TurtleSalute] Loaded Git version: " .. gitVersion)
 end
 
 -- Slash command
