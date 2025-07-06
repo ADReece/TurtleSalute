@@ -60,7 +60,7 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
         if type(message) == "string" then
             message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
             if message ~= "" then
-                print("[TurtleSalute Debug]", message)
+                print("[TurtleSalute Debug] " .. message)
             end
         else
             print("[TurtleSalute Debug] Error: Invalid message format")
