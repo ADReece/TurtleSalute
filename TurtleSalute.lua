@@ -50,7 +50,7 @@ end
 -- Debugging output for communication
 local function debugPrint(...)
     if TurtleSaluteDB.debug then
-        print("[TurtleSalute Debug]", ...)
+        print("[TurtleSalute Debug]", table.concat({...}, " "))
     end
 end
 
