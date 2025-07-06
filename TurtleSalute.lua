@@ -57,9 +57,11 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
             end
         end
         local message = table.concat(args, " ")
-        message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
-        if message ~= "" then
-            print("[TurtleSalute Debug]", message)
+        if type(message) == "string" then
+            message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
+            if message ~= "" then
+                print("[TurtleSalute Debug]", message)
+            end
         end
     end
 end
@@ -135,6 +137,7 @@ f:SetScript("OnEvent", function()
     if ev == "PLAYER_LOGIN" then
         math.randomseed(time())
         debugPrint("Addon initialized.")
+        displayGitVersion()
         return
     end
 
@@ -195,6 +198,18 @@ f:SetScript("OnEvent", function()
         DoEmote("salute")
     end
 end)
+
+-- Function to display the current Git version
+local function displayGitVersion()
+    local gitVersion = "unknown"
+    local versionFile = "Interface/AddOns/TurtleSalute/.git/HEAD"
+    local file = io.open(versionFile, "r")
+    if file then
+        gitVersion = file:read("*line")
+        file:close()
+    end
+    print("[TurtleSalute] Loaded Git version:", gitVersion)
+end
 
 -- Slash command
 SLASH_TS1 = "/ts"
