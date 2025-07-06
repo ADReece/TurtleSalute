@@ -50,13 +50,16 @@ end
 -- Debugging output for communication
 local function debugPrint(arg1, arg2, arg3, arg4, arg5)
     if TurtleSaluteDB.debug then
-        local args = { arg1, arg2, arg3, arg4, arg5 }
-        local message = table.concat(args, " ")
-        if type(message) == "string" then
-            message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
-            if message ~= "" then
-                print("[TurtleSalute Debug]", message)
+        local args = {}
+        for _, arg in ipairs({ arg1, arg2, arg3, arg4, arg5 }) do
+            if arg ~= nil then
+                table.insert(args, tostring(arg))
             end
+        end
+        local message = table.concat(args, " ")
+        message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
+        if message ~= "" then
+            print("[TurtleSalute Debug]", message)
         end
     end
 end
