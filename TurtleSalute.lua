@@ -56,11 +56,11 @@ local function debugPrint(arg1, arg2, arg3, arg4, arg5)
                 table.insert(args, tostring(arg))
             end
         end
-        local message = table.concat(args, " ")
-        if type(message) == "string" then
-            message = message:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
-            if message ~= "" then
-                print("[TurtleSalute Debug] " .. message)
+        local msgstr = table.concat(args, " ")
+        if type(msgstr) == "string" then
+            msgstr = msgstr:gsub("%s+", " "):gsub("^%s*(.-)%s*$", "%1") -- Trim and normalize spaces
+            if msgstr ~= "" then
+                print("[TurtleSalute Debug] " .. msgstr)
             end
         else
             print("[TurtleSalute Debug] Error: Invalid message format")
